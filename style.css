@@ -1,20 +1,21 @@
-/* Background animated stars */
+/* Background stars */
 body {
   margin: 0;
   padding: 0;
   background: black;
-  overflow: hidden;
   font-family: 'Poppins', sans-serif;
   color: white;
-  text-align: center;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Smooth scroll effect */
 }
 
 .stars {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: url('https://i.ibb.co/7QpKsCX/stars.png') repeat;
   animation: moveStars 60s linear infinite;
+  z-index: -1;
 }
 
 @keyframes moveStars {
@@ -22,9 +23,42 @@ body {
   to { background-position: -10000px 5000px; }
 }
 
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  z-index: 10;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: #0ff;
+}
+
+/* Sections */
+section {
+  min-height: 100vh;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Glowing title */
 .glow {
-  font-size: 3em;
+  font-size: 2.5em;
   color: #fff;
   text-shadow: 0 0 20px #0ff, 0 0 30px #0ff;
   animation: pulse 2s infinite;
@@ -35,17 +69,18 @@ body {
   50% { text-shadow: 0 0 40px #0ff, 0 0 80px #0ff; }
 }
 
-/* Fade in text */
-.fade-in {
+/* Fade-in effect on scroll */
+.fade {
   opacity: 0;
-  animation: fade 3s forwards;
+  transform: translateY(30px);
+  transition: all 1.2s ease-out;
+}
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes fade {
-  to { opacity: 1; }
-}
-
-/* Button with hover effect */
+/* Button */
 .btn {
   background: linear-gradient(90deg, #ff00cc, #3333ff);
   border: none;
