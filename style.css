@@ -95,3 +95,38 @@ section {
 .btn:hover {
   transform: scale(1.1);
 }
+/* Buttons container */
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Resume Buttons */
+.btn {
+  padding: 12px 25px;
+  background: #ff9800;
+  color: #000;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #ff5722;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #ff9800;
+  color: #ff9800;
+}
+
+.btn-outline:hover {
+  background: #ff9800;
+  color: #000;
+}
