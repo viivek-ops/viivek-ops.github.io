@@ -1,19 +1,16 @@
-// Button alert
-function sayHello() {
-  alert("Hello, I'm Vivek Singh 🚀✨!\nThanks for visiting my portfolio.");
-}
-
-// Fade-in on scroll
-const faders = document.querySelectorAll('.fade');
+// Simple card animation on scroll
+const cards = document.querySelectorAll('.card');
 
 window.addEventListener('scroll', () => {
-  faders.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add('show');
-    }
-  });
-});
+    const triggerBottom = window.innerHeight / 5 * 4;
 
-// Run once at load (in case Home is already visible)
-window.dispatchEvent(new Event('scroll'));
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+
+        if(cardTop < triggerBottom){
+            card.classList.add('show');
+        } else {
+            card.classList.remove('show');
+        }
+    });
+});
