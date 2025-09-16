@@ -7,38 +7,91 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="stars"></div>
-
   <!-- Navigation -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Home Section -->
-  <section id="home" class="content">
-    <h1 class="glow">Hi, I’m Vivek Singh</h1>
-    <p class="fade">Welcome to my creative space 🚀✨</p>
-    <button class="btn" onclick="sayHello()">Click Me ✨</button>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Hello, I'm <span class="highlight">Vivek Singh</span></h1>
+    <h2><span id="typing"></span></h2>
+    <div class="buttons">
+      <a href="resume.pdf" download class="btn">📄 Download Resume</a>
+      <a href="resume.pdf" target="_blank" class="btn btn-outline">👀 View Resume</a>
+    </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="content">
-    <h1 class="glow">About Me</h1>
-    <p class="fade">
-      My name is <strong>Vivek Singh</strong>.  
-      I am pursuing <strong>Engineering in AI and Data Science</strong>  
-      at <strong>Rajagiri School of Engineering and Technology</strong>.  
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+    <p>
+      I'm Vivek Singh, pursuing Engineering in AI and Data Science at 
+      <strong>Rajagiri School of Engineering and Technology</strong>. 
+      I’m passionate about Artificial Intelligence, problem solving, and creating impactful projects.
     </p>
+    <ul class="about-details">
+      <li>📘 12th Marks: <strong>94%</strong></li>
+      <li>🎯 KEAM Rank: <strong>4963</strong></li>
+      <li>🏫 Studied 12th at <strong>SBOA Senior Secondary School</strong></li>
+    </ul>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="fade-in">
+    <h2>Skills</h2>
+    <div class="skill">
+      <p>Python</p>
+      <div class="bar"><span style="width: 90%"></span></div>
+    </div>
+    <div class="skill">
+      <p>Machine Learning</p>
+      <div class="bar"><span style="width: 80%"></span></div>
+    </div>
+    <div class="skill">
+      <p>Web Development</p>
+      <div class="bar"><span style="width: 70%"></span></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="fade-in">
+    <h2>Projects</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <h3>🤖 AI Chatbot</h3>
+        <p>A chatbot built using Python and NLP that can answer user queries in real-time.</p>
+        <a href="#" class="btn-outline">View Project</a>
+      </div>
+
+      <div class="project-card">
+        <h3>📊 Data Visualizer</h3>
+        <p>An interactive data visualization dashboard created with Python and Matplotlib.</p>
+        <a href="#" class="btn-outline">View Project</a>
+      </div>
+
+      <div class="project-card">
+        <h3>🌐 Portfolio Website</h3>
+        <p>This animated personal portfolio built with HTML, CSS, and JavaScript.</p>
+        <a href="#" class="btn-outline">View Project</a>
+      </div>
+    </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="content">
-    <h1 class="glow">Contact Me</h1>
-    <p class="fade">
-      📧 Email: <a href="mailto:viiveksingh2006@gmail.com">viiveksingh2006@gmail.com</a>
-    </p>
+  <section id="contact" class="fade-in">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:viiveksingh2006@gmail.com">viiveksingh2006@gmail.com</a></p>
+    <p>📍 Location: <strong>Ernakulam, Kerala</strong></p>
+    <a href="mailto:viiveksingh2006@gmail.com?subject=Hire%20Me&body=Hi%20Vivek," class="btn">💼 Hire Me</a>
   </section>
 
   <script src="script.js"></script>
