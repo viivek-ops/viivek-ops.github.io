@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivek Singh Portfolio</title>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png'),
+                  radial-gradient(circle at center, #0d0d2b, #000);
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 70%;
+      max-width: 800px;
+      aspect-ratio: 8/6; /* Maintains 8:6 ratio */
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Glowing Name */
+    .glow {
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 5px #00ffe7, 0 0 10px #00ffe7, 0 0 20px #00ffe7, 0 0 40px #00ffe7;
+    }
+
+    .swiper-slide:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Swiper Container -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- CARD 1 -->
+      <div class="swiper-slide glow">NAME - VIVEK SINGH (RSET)</div>
+
+      <!-- CARD 2 -->
+      <div class="swiper-slide" onclick="window.open('about.html', '_blank')">
+        ABOUT ME
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="swiper-slide" onclick="window.open('education.html', '_blank')">
+        EDUCATION
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="swiper-slide" onclick="window.open('projects.html', '_blank')">
+        PROJECTS
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="swiper-slide" onclick="window.open('contact.html', '_blank')">
+        CONTACT
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cube",
+      grabCursor: true,
+      cubeEffect: {
+        shadow: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      },
+      loop: true,
+      keyboard: { enabled: true }, // supports arrow keys
+    });
+  </script>
+</body>
+</html>
