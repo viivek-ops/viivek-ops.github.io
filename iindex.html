@@ -1,105 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vivek Singh Portfolio</title>
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vivek Singh - Swipe Cards</title>
+
+  <!-- Swiper CSS (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png'),
-                  radial-gradient(circle at center, #0d0d2b, #000);
+    :root{
+      --card-width: min(900px, 80vw); /* responsive */
+      --card-aspect-ratio: 4/3; /* 8:6 -> 4:3 */
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#000;}
+    /* Space background */
+    body{
+      background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
       background-size: cover;
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
+      background-position: center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+      color: white;
     }
 
+    /* Center wrapper */
+    .wrapper{
+      width:var(--card-width);
+      aspect-ratio: var(--card-aspect-ratio);
+      max-width: 95vw;
+      max-height: 95vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    /* Swiper container size fills wrapper */
     .swiper {
-      width: 70%;
-      max-width: 800px;
-      aspect-ratio: 8/6; /* Maintains 8:6 ratio */
+      width:100%;
+      height:100%;
     }
 
     .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      text-align: center;
-      padding: 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65));
+      cursor: default;
+      padding: 24px;
     }
 
-    /* Glowing Name */
-    .glow {
-      font-size: 2rem;
+    /* Card inner */
+    .card {
+      text-align:center;
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    /* Home glowing name */
+    .glow-name{
+      font-weight:800;
+      letter-spacing:1px;
+      font-size: clamp(28px, 5vw, 48px);
+      color:#a5f3fc;
+      text-shadow:
+        0 0 6px rgba(165,243,252,0.9),
+        0 0 18px rgba(165,243,252,0.6),
+        0 0 30px rgba(80,205,237,0.25);
+      animation: pulseGlow 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%{ filter: drop-shadow(0 0 6px rgba(165,243,252,0.6)); transform: translateY(0);}
+      50%{ filter: drop-shadow(0 0 18px rgba(165,243,252,0.95)); transform: translateY(-3px);}
+      100%{ filter: drop-shadow(0 0 6px rgba(165,243,252,0.6)); transform: translateY(0);}
+    }
+
+    /* Clickable card style */
+    .card-button{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
+      transition: transform .18s ease, box-shadow .18s ease;
       color: #fff;
-      text-shadow: 0 0 5px #00ffe7, 0 0 10px #00ffe7, 0 0 20px #00ffe7, 0 0 40px #00ffe7;
+      text-decoration:none;
+      font-weight:600;
+    }
+    .card-button:hover{ transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+
+    /* simple page text style for slide labels */
+    .label { font-size: clamp(18px, 3vw, 26px); font-weight:700; }
+
+    /* reversed fake sentence at the end (mirrored) */
+    .reversed {
+      position:absolute;
+      bottom:-44px;
+      left:50%;
+      transform: translateX(-50%) scaleX(-1); /* reversed visually */
+      opacity:0.85;
+      color: #ddd;
+      font-size:14px;
+      pointer-events:none;
+      white-space:nowrap;
+      font-style:italic;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.6);
     }
 
-    .swiper-slide:hover {
-      transform: scale(1.05);
+    /* Small-screen adjustments */
+    @media (max-width:540px){
+      .wrapper{ padding:8px; border-radius:12px; }
+      .reversed{ bottom:-34px; font-size:12px; }
     }
   </style>
 </head>
 <body>
+  <div class="wrapper">
+    <!-- Swiper -->
+    <div class="swiper">
+      <div class="swiper-wrapper">
 
-  <!-- Swiper Container -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <!-- CARD 1 -->
-      <div class="swiper-slide glow">NAME - VIVEK SINGH (RSET)</div>
+        <!--
+          ====== IMPORTANT: adding a new card is EASY ======
+          To add another card, copy/paste one <div class="swiper-slide">...</div>
+          and change its inner content. No other code changes required.
+        -->
 
-      <!-- CARD 2 -->
-      <div class="swiper-slide" onclick="window.open('about.html', '_blank')">
-        ABOUT ME
-      </div>
+        <!-- Card 1: Home (default slide) - not clickable -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="glow-name">NAME — VIVEK SINGH (RSET)</div>
+            <div style="opacity:0.8;font-size:14px">Home</div>
+          </div>
+        </div>
 
-      <!-- CARD 3 -->
-      <div class="swiper-slide" onclick="window.open('education.html', '_blank')">
-        EDUCATION
-      </div>
+        <!-- Card 2: About Me (opens new tab) -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="label">ABOUT ME</div>
+            <a class="card-button" href="about.html" target="_blank" rel="noopener">Open About Me</a>
+          </div>
+        </div>
 
-      <!-- CARD 4 -->
-      <div class="swiper-slide" onclick="window.open('projects.html', '_blank')">
-        PROJECTS
-      </div>
+        <!-- Card 3: Education -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="label">EDUCATION</div>
+            <a class="card-button" href="education.html" target="_blank" rel="noopener">Open Education</a>
+          </div>
+        </div>
 
-      <!-- CARD 5 -->
-      <div class="swiper-slide" onclick="window.open('contact.html', '_blank')">
-        CONTACT
-      </div>
-    </div>
+        <!-- Card 4: Projects -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="label">PROJECTS</div>
+            <a class="card-button" href="projects.html" target="_blank" rel="noopener">Open Projects</a>
+          </div>
+        </div>
+
+        <!-- Card 5: Contact -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="label">CONTACT</div>
+            <a class="card-button" href="contact.html" target="_blank" rel="noopener">Open Contact</a>
+          </div>
+        </div>
+
+      </div> <!-- swiper-wrapper -->
+
+      <!-- pagination (dots) -->
+      <div class="swiper-pagination"></div>
+    </div> <!-- swiper -->
+
+    <!-- fake reversed sentence (visual reversed) -->
+    <div class="reversed">.ecnetnes desrever ekaf a si sihT</div>
   </div>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <!-- Swiper JS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script>
-    var swiper = new Swiper(".mySwiper", {
-      effect: "cube",
+    // Initialize Swiper with cube effect and smooth transition
+    const swiper = new Swiper('.swiper', {
+      effect: 'cube',
       grabCursor: true,
+      centeredSlides: true,
       cubeEffect: {
         shadow: true,
         slideShadows: true,
         shadowOffset: 20,
         shadowScale: 0.94,
       },
-      loop: true,
-      keyboard: { enabled: true }, // supports arrow keys
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      speed: 700,
+      // enable keyboard navigation
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
     });
+
+    // Make first slide the default (home)
+    swiper.slideTo(0, 0);
   </script>
 </body>
 </html>
-<div class="swiper-slide" onclick="window.open('newpage.html', '_blank')">NEW TOPIC</div>
